@@ -1,5 +1,8 @@
 {
   "name": "dic_day10",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "bootstrap": "4",
+    "jquery": "^3.3.1"
+  }
 }
