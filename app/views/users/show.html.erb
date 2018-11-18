@@ -1,0 +1,55 @@
+<h1>プロフィール</h1>
+<% if authority_check(@user.id) %>
+  <div class="row">
+    <div class="col-xs-2 col-xs-offset-4"><%= link_to("編集",edit_user_path(@user.id),data:{confirm: "編集しますか？"},class:"btn btn-default") %></div>
+    <div class="col-xs-2"><%= link_to("削除",user_path(@user.id),method: :delete,data:{confirm: "削除しますか？"},class:"btn btn-default") %></div>
+  </div>
+<% end %>
+<p class="row"><%= image_tag("#{@user.image}",class:"col-xs-offset-4 col-xs-4 col-sm-offset-5 col-sm-2") %></p>
+<div class="row">
+  <h3><%= @user.name %></h3>
+</div>
+
+<div class="container">
+  <!-- ユーザーが投稿したブログ一覧 -->
+  <div id="user_blogs" class="row col-md-6">
+    <h3>ブログ</h3>
+    <% if @blogs.present? %>
+      <% @blogs.each do |blog| %>
+        <div class="row to_blog">
+          <%= link_to blog_path(blog) do%>
+            <div class="col-xs-12">
+              <p class="col-xs-4"><%= blog.title %></p>
+              <p class="col-xs-8"><%= blog.content %></p>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    <% else %>
+      <p>投稿したブログがありません．</p>
+    <% end %>
+  </div>
+
+  <!-- ユーザーがお気に入りしたブログ一覧 -->
+  <div id="user_favorites" class="row col-md-6">
+    <h3>お気に入り</h3>
+    <% if @favoriteBlogs.present? %>
+      <% @favoriteBlogs.each do |favoriteBlog| %>
+        <div class="row to_blog">
+          <%= link_to blog_path(favoriteBlog.id) do%>
+            <div class="col-xs-12">
+              <p class="col-xs-4"><%= favoriteBlog.title %></p>
+              <p class="col-xs-8"><%= favoriteBlog.content %></p>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    <% else %>
+      <p>お気に入りしたブログはありません．</p>
+    <% end %>
+  </div>
+
+  <!-- <div id="user_comments" class="row">
+    <h3>コメント</h3>
+  </div> -->
+</div>

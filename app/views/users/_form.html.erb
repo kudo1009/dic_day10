@@ -1,0 +1,29 @@
+<%= form_with(model: @user,local: true,url: user_choose_new_or_edit) do |form| %>
+    <% if @user.errors.any? %>
+        <div id="error_explanation">
+            <h2><%= @user.errors.count %> 件のエラーがあります。</h2>
+            <ul>
+                <% @user.errors.full_messages.each do |error|%>
+                    <li><%= error %></li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
+    <div class="row">
+            <p class="col-xs-5 col-sm-offset-4 col-sm-2"><%= form.label :name %></p>
+            <p class="col-xs-7 col-sm-3"><%= form.text_field :name %></p>
+    </div>
+    <div class="row">
+            <p class="col-xs-5 col-sm-offset-4 col-sm-2"><%= form.label :email %></p>
+            <p class="col-xs-7 col-sm-3"><%= form.text_field :email %></p>
+    </div>
+    <div class="row">
+            <p class="col-xs-5 col-sm-offset-4 col-sm-2"><%= form.label :password %></p>
+            <p class="col-xs-7 col-sm-3"><%= form.password_field :password %></p>
+    </div>
+    <div class="row">
+            <p class="col-xs-5 col-sm-offset-4 col-sm-2"><%= form.label :password_confirmation %></p>
+            <p class="col-xs-7 col-sm-3"><%= form.password_field :password_confirmation %></p>
+    </div>
+    <%= form.submit value="確認する",class:"btn btn-default"%>
+<% end %>
